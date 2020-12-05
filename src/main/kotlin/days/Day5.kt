@@ -4,7 +4,7 @@ import kotlin.math.ceil
 
 
 class Day5 : Day(5) {
-    private val ticketIdList = calcSortedTicketIdList(inputList)
+    private val ticketIdList = inputList.map { calcTicketId(it) }.sorted()
 
     override fun partOne(): Any {
         return ticketIdList.last()
@@ -12,12 +12,6 @@ class Day5 : Day(5) {
 
     override fun partTwo(): Any {
         return (ticketIdList.first()..ticketIdList.last()).first { it !in ticketIdList }
-    }
-
-    private fun calcSortedTicketIdList(ticketList: List<String>): MutableList<Int> {
-        val idList: MutableList<Int> = ticketList.map { calcTicketId(it) }.toMutableList()
-        idList.sort()
-        return idList
     }
 
     private fun calcTicketId(ticket: String): Int {
